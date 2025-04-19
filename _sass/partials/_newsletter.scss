@@ -1,0 +1,47 @@
+section
+.newsletter-section {
+  background-color: white;
+  position: relative;
+  
+  .subscribe-form {
+    max-width: 500px;
+    margin: 25px auto 0;
+    
+    .form-group {
+      display: flex;
+      gap: 10px;
+      
+      .email-input {
+        flex: 1;
+        padding: 15px 20px;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        
+        &:focus {
+          outline: none;
+          border-color: $primary-color;
+          box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.1);
+        }
+      }
+      
+      .subscribe-button {
+        background: linear-gradient(45deg, $primary-color, $secondary-color);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 0 25px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        
+        &:hover {
+          background: linear-gradient(45deg, darken($primary-color, 5%), darken($secondary-color, 5%));
+          transform: translateY(-2px);
+          box-shadow: 0 5px 15px rgba(3, 102, 214, 0.2);
+        }
+      }
+    }
+  }
+}

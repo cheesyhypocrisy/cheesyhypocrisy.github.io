@@ -1,0 +1,94 @@
+---
+layout: default
+---
+
+{% if site.posts.size > 0 %}
+<div class="main-content-card">
+  <div class="hero-section">
+    <h1>{{ site.title }}</h1>
+    <p class="site-description">{{ site.description }}</p>
+  </div>
+  
+  <div class="section-divider"></div>
+  
+  <div class="content-section featured-section">
+    <h2 class="section-title">Featured Post</h2>
+    <div class="featured-post">
+      {% assign featured_post = site.posts.first %}
+      <h3><a href="{{ featured_post.url | relative_url }}">{{ featured_post.title | escape }}</a></h3>
+      <p>{{ featured_post.excerpt }}</p>
+      <a href="{{ featured_post.url | relative_url }}" class="btn">Read This Post</a>
+    </div>
+  </div>
+  
+  <div class="section-divider"></div>
+  
+  <div class="content-section search-section">
+    <h2 class="section-title">Find Posts</h2>
+    <div class="search-container">
+      <form action="/search.html" method="get" class="search-form">
+        <input type="text" placeholder="What are you looking for?" name="q" class="search-input" required>
+        <button type="submit" class="search-button">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+      </form>
+    </div>
+  </div>
+  
+  <div class="section-divider"></div>
+  
+  <div class="content-section">
+    <h2 class="section-title">All Posts</h2>
+    <div class="post-list-container">
+      {% for post in site.posts %}
+      <div class="post-item">
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
+        <span class="post-date">
+          {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+          {{ post.date | date: date_format }}
+        </span>
+        {% if post.categories.size > 0 %}
+        <div class="post-categories">
+          {% for category in post.categories limit:3 %}
+          <span class="post-category">{{ category }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  
+  {% if site.tags.size > 0 %}
+  <div class="section-divider"></div>
+  
+  <div class="content-section">
+    <h2 class="section-title">Browse by Topic</h2>
+    <div class="topic-tags">
+      {% for tag in site.tags %}
+      <a href="/tags/{{ tag[0] }}" class="topic-tag">{{ tag[0] }}</a>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+  
+  <div class="section-divider"></div>
+  
+  <div class="content-section newsletter-section">
+    <h2 class="section-title">Stay Updated</h2>
+    <p>Subscribe to get the latest posts straight to your inbox</p>
+    
+    <div class="subscribe-form">
+      <form action="#" method="post">
+        <div class="form-group">
+          <input type="email" placeholder="Your email address" required class="email-input">
+          <button type="submit" class="subscribe-button">Subscribe</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endif %}

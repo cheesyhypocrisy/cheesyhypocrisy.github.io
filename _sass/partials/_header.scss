@@ -1,0 +1,58 @@
+gradient
+.site-header {
+  border-top: none;
+  border-bottom: none;
+  background: $header-gradient;
+  box-shadow: $shadow-md;
+  margin-bottom: -20px;
+  
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+  }
+  
+  .site-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    background: $primary-gradient;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  
+  .site-nav {
+    .page-link {
+      margin-left: 25px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+      color: $text-color;
+      
+      &:hover {
+        color: $primary-color;
+        text-decoration: none;
+      }
+      
+      &:after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 0;
+        background-color: $primary-color;
+        transition: width 0.3s ease;
+      }
+      
+      &:hover:after {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,120 @@
+---
+layout: default
+title: Search Results
+exclude_from_nav: true
+---
+
+<div class="main-content-card">
+  <div class="content-section">
+    <h1 class="section-title">Search Results</h1>
+    
+    <div class="search-container" style="margin-bottom: 30px;">
+      <form action="/search.html" method="get" class="search-form">
+        <input type="text" placeholder="What are you looking for?" name="q" class="search-input" id="search-box">
+        <button type="submit" class="search-button">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+      </form>
+    </div>
+    
+    <div id="search-results" class="post-list-container">
+      <!-- Results will be displayed here -->
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const query = urlParams.get('q');
+  
+  window.simpleJekyllSearch = SimpleJekyllSearch({
+    searchInput: document.getElementById('search-box'),
+    resultsContainer: document.getElementById('search-results'),
+    json: '/search.json',
+    searchResultTemplate: `
+      <div class="post-item">
+        <h3><a href="{url}">{title}</a></h3>
+        <span class="post-date">{date}</span>
+        <p>{snippet}</p>
+        <div class="post-categories">
+          {categories}
+        </div>
+        <div class="post-tags">
+          {tags}
+        </div>
+      </div>
+    `,
+    templateMiddleware: function(prop, value, template) {
+      if (prop === 'categories') {
+        if (value && value.length) {
+          return value.map(category => 
+            `<span class="post-category">${category}</span>`
+          ).join('');
+        }
+        return '';
+      }
+      if (prop === 'tags') {
+        if (value && value.length) {
+          return value.map(tag => 
+            `<span class="post-tag">${tag}</span>`
+          ).join('');
+        }
+        return '';
+      }
+      if (prop === 'date') {
+        const date = new Date(value);
+        const options = { year: 'numeric', month: 'short', day: 'numeric' };
+        return date.toLocaleDateString('en-US', options);
+      }
+      return value;
+    },
+    noResultsText: '<div class="no-results">No results found</div>',
+    limit: 10,
+    fuzzy: false,
+    keys: ['title', 'content', 'tags', 'categories']
+  });
+  
+  if (query) {
+    document.getElementById('search-box').value = query;
+    setTimeout(() => {
+      window.simpleJekyllSearch.search(query);
+    }, 300);
+  }
+</script>
+
+<style>
+  .no-results {
+    text-align: center;
+    padding: 30px;
+    color: #718096;
+    font-size: 1.1rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    margin-top: 20px;
+  }
+  
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  
+  .post-tag {
+    background-color: rgba(90, 50, 163, 0.08);
+    color: #5a32a3;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+  }
+  
+  .post-tag:hover {
+    background-color: rgba(90, 50, 163, 0.15);
+    transform: translateY(-2px);
+  }
+</style>

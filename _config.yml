@@ -20,8 +20,11 @@ social_links:
 markdown: kramdown
 
 # Custom styling (optional)
+# Add these lines to your existing config if they're not already there
+# Add this to your existing _config.yml
 sass:
-  style: compressed # Minify CSS for performance
+  sass_dir: _sass
+  style: compressed
 
 future: true
 

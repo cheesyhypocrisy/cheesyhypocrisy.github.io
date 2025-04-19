@@ -1,54 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ page.title }} | {{ site.title }}</title>
-  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-  <script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
-</head>
-<body>
-  <header>
-    {% include navbar.html %}
-  </header>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
 
-  <!--<div class="search-container">-->
-  <!--<input type="text" id="search-input" placeholder="Search posts...">-->
-  <!--<div id="results-container"></div>-->
-</div>
+  {%- include head.html -%}
 
-<script>
-SimpleJekyllSearch({
-  searchInput: document.getElementById('search-input'),
-  resultsContainer: document.getElementById('results-container'),
-  json: '/search.json',
-  searchResultTemplate: '<li><a href="{url}">{title}</a></li>',
-  noResultsText: 'No results found',
-  limit: 10,
-  fuzzy: false
-})
-</script>
+  <body>
 
-  <main class="content">
-    {{ content }}
-  </main>
+    {%- include header.html -%}
 
-  <footer>
-    {% include footer.html %}
-  </footer>
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        {{ content }}
+      </div>
+    </main>
 
-<script>
-  document.getElementById('mobile-menu').addEventListener('click', function() {
-    document.querySelector('.nav-links').classList.toggle('active');
-    
-    const spans = this.querySelectorAll('span');
-    spans[0].classList.toggle('rotate-down');
-    spans[1].classList.toggle('fade-out');
-    spans[2].classList.toggle('rotate-up');
-  });
-</script>
+    {%- include footer.html -%}
 
-</body>
+  </body>
+
 </html>
 
 
