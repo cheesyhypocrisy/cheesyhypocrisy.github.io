@@ -1,48 +1,116 @@
-footer
+// Footer styling
 .site-footer {
-  border-top: none;
-  padding: $spacing-xl 0;
-  background: $footer-gradient;
-  color: white;
-  margin-top: $spacing-xl;
-  width: 100%;
+  background: linear-gradient(135deg, #1a202c, #2d3748);
+  color: #f7fafc;
+  padding: 50px 0 30px;
+  margin-top: 60px;
   
   .wrapper {
-    max-width: $max-width;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 $spacing-md;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 0 20px;
+    text-align: center;
   }
   
-  .footer-content {
-    display: flex;
-    justify-content: center;
-    margin-bottom: $spacing-md;
+  .footer-col {
+    max-width: 600px;
+    margin: 0 auto;
+    float: none;
+    text-align: center;
+
+    h2 {
+      color: white;
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 12px;
+      display: inline-block;
+      
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 3px;
+        background: linear-gradient(to right, #0366d6, #5a32a3);
+        border-radius: 3px;
+      }
+    }
+    
+    p {
+      color: #cbd5e0;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
   }
   
   .social-links {
     display: flex;
-    gap: $spacing-md;
-    margin-bottom: $spacing-md;
+    gap: 15px;
+    margin: 20px auto;
+    justify-content: center;
+    align-items: center;
     
     a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
       color: white;
-      font-size: 1.2rem;
       transition: all 0.3s ease;
-      opacity: 0.8;
       
       &:hover {
-        opacity: 1;
+        background: linear-gradient(45deg, #0366d6, #5a32a3);
         transform: translateY(-3px);
       }
     }
   }
   
-  .copyright {
+  .quick-links {
+    margin: 25px auto 15px;
+    
+    a {
+      color: #cbd5e0;
+      text-decoration: none;
+      margin: 0 12px;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+      
+      &:hover {
+        color: white;
+      }
+    }
+  }
+  
+  .footer-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+  }
+  
+  .footer-bottom {
+    margin-top: 20px;
     text-align: center;
-    font-size: 0.9rem;
-    opacity: 0.7;
+    
+    p {
+      color: #a0aec0;
+      font-size: 0.9rem;
+      margin: 0;
+      
+      a {
+        color: #cbd5e0;
+        text-decoration: none;
+        
+        &:hover {
+          color: white;
+        }
+      }
+    }
   }
 }

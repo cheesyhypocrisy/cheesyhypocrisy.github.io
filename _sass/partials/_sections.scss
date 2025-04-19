@@ -1,30 +1,26 @@
-margin
+// Main content card - single card with dividers
+.main-content-card {
+  background-color: $card-background;
+  border-radius: $border-radius-xl;
+  box-shadow: $shadow-lg;
+  overflow: hidden;
+  margin-bottom: $spacing-xl + 10px;
+  margin-top: $spacing-md;
+}
+
+// Hero section with reduced margin
 .hero-section {
-  background: linear-gradient(135deg, #f8f9fa, #ffffff);
+  background: $hero-gradient;
   border-left: none;
-  padding-top: 20px;
-  padding-bottom: 35px;
-  padding-left: 35px;
-  padding-right: 35px;
+  padding: $spacing-md $spacing-lg $spacing-lg $spacing-lg;
   position: relative;
   overflow: hidden;
   margin-bottom: 0;
-  border-radius: 16px 16px 0 0;
-  
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 5px;
-    height: 100%;
-    background: linear-gradient(to bottom, $primary-color, $secondary-color);
-    border-radius: 5px;
-  }
+  border-radius: $border-radius-xl $border-radius-xl 0 0;
   
   h1 {
     font-size: 2.8rem;
-    margin-bottom: 20px;
+    margin-bottom: $spacing-md;
     color: $text-color;
     line-height: 1.2;
   }
@@ -37,20 +33,10 @@ margin
   }
 }
 
-dividers
-.main-content-card {
-  background-color: white;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.04), 0 1px 5px rgba(0,0,0,0.03);
-  overflow: hidden;
-  margin-bottom: 50px;
-  margin-top: 20px;
-}
-
 .content-section {
-  padding: 35px;
+  padding: $spacing-lg;
   position: relative;
-  background-color: white;
+  background-color: $card-background;
 }
 
 .section-divider {
@@ -59,11 +45,11 @@ dividers
   margin: 0;
 }
 
-styling
+// Section title styling
 .section-title {
   font-size: 1.8rem;
   color: $text-color;
-  margin-bottom: 30px;
+  margin-bottom: $spacing-lg;
   padding-bottom: 0;
   border-bottom: none;
   display: block;
@@ -72,11 +58,11 @@ styling
   &:after {
     content: '';
     position: absolute;
-    bottom: -10px;
+    bottom: -$spacing-sm;
     left: 0;
     width: 50px;
     height: 3px;
-    background: linear-gradient(to right, $primary-color, $secondary-color);
-    border-radius: 3px;
+    background: $primary-gradient;
+    border-radius: $border-radius-sm;
   }
 }

@@ -1,38 +1,38 @@
-variables
-$primary-color: #0366d6;
-$secondary-color: #5a32a3;
-$text-color: #1a202c;
-$text-muted: #718096;
-$background-color: #f9f9f9;
-$card-background: #ffffff;
-$border-light: #e2e8f0;
+/* Color variables */
+$primary-color: #0366d6 !default;
+$secondary-color: #5a32a3 !default;
+$text-color: #1a202c !default;
+$text-muted: #718096 !default;
+$background-color: #f9f9f9 !default;
+$card-background: #ffffff !default;
+$border-light: #e2e8f0 !default;
 
-variables
-$primary-gradient: linear-gradient(45deg, #0366d6, #5a32a3);
-$primary-gradient-hover: linear-gradient(45deg, #0256b9, #4a2b87);
-$header-gradient: linear-gradient(to right, #ffffff, #f8f9fa);
-$hero-gradient: linear-gradient(135deg, #f8fafd, #ffffff);
-$footer-gradient: linear-gradient(135deg, #1a202c, #2d3748);
+// Gradient variables
+$primary-gradient: linear-gradient(45deg, $primary-color, $secondary-color) !default;
+$primary-gradient-hover: linear-gradient(45deg, darken($primary-color, 5%), darken($secondary-color, 5%)) !default;
+$header-gradient: linear-gradient(to right, #ffffff, #f8f9fa) !default;
+$hero-gradient: linear-gradient(135deg, #f8fafd, #ffffff) !default;
+$footer-gradient: linear-gradient(135deg, #1a202c, #2d3748) !default;
 
-variables
+// Spacing variables
 $spacing-xs: 5px;
 $spacing-sm: 10px;
 $spacing-md: 20px;
 $spacing-lg: 30px;
 $spacing-xl: 40px;
 
-radius
+// Border radius
 $border-radius-sm: 4px;
 $border-radius-md: 8px;
 $border-radius-lg: 12px;
 $border-radius-xl: 16px;
 $border-radius-pill: 25px;
 
-shadows
+// Box shadows
 $shadow-sm: 0 2px 5px rgba(0,0,0,0.05);
 $shadow-md: 0 5px 15px rgba(0,0,0,0.05);
 $shadow-lg: 0 10px 30px rgba(0,0,0,0.04), 0 1px 5px rgba(0,0,0,0.03);
 $shadow-hover: 0 8px 25px rgba(0,0,0,0.08);
 
-Layout
+// Layout
 $max-width: 1200px;
