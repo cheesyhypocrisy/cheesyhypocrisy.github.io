@@ -1,0 +1,27 @@
+# Site settings
+title: Blog
+description: "Come along on my journey through the land of tech"
+baseurl: "" # Leave empty for GitHub Pages user site
+url: "https://cheesyhypocrisy.github.io"
+
+# Theme and plugins
+theme: minima # Default theme; customize below or replace with remote_theme if needed.
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# SEO and social sharing
+author: Harsh Mantri
+social_links:
+  github: https://github.com/cheesyhypocrisy
+
+# Build settings
+markdown: kramdown
+
+# Custom styling (optional)
+sass:
+  style: compressed # Minify CSS for performance
+
+future: true
+

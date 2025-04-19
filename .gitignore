@@ -1,0 +1,16 @@
+# Jekyll build and cache
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Bundler/Gem
+vendor/
+
+# If using GitHub Pages, ignore the lockfile
+Gemfile.lock
+
+# OS/Editor files (optional, but recommended)
+.DS_Store
+Thumbs.db
+*.swp
