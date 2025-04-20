@@ -1,13 +1,25 @@
-// Base styles
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   line-height: 1.6;
   color: $text-color;
   background-color: $background-color;
-  max-width: $max-width;
+  padding-top: 60px; // navbar height + minimal padding
+}
+
+.page-content {
+  padding: $spacing-md 0;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.wrapper {
+  max-width: 800px;
   margin: 0 auto;
   padding: 0 $spacing-md;
+  width: 100%;
+  overflow-x: hidden;
 }
+
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
@@ -15,7 +27,6 @@ h1, h2, h3, h4, h5, h6 {
   color: $text-color;
 }
 
-// Button Styling
 .btn {
   display: inline-block;
   padding: 8px 16px;
@@ -27,7 +38,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: background-color 0.3s ease;
   
   &:hover {
-    background-color: darken($primary-color, 10%);
+    background-color: var(--primary-color-dark);
     text-decoration: none;
     color: white;
   }

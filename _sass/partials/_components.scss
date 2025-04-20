@@ -1,0 +1,197 @@
+// Components: buttons, cards, posts, sections, search
+
+.btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: $primary-color;
+  color: white;
+  border-radius: $border-radius-sm;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  border: none;
+  
+  &:hover {
+    background-color: var(--primary-color-dark);
+    text-decoration: none;
+    color: white;
+  }
+}
+
+.featured-post, .post-item {
+  background: linear-gradient(135deg, #ffffff, #f8f9fa);
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+  padding: 25px 30px;
+  margin-bottom: 35px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+}
+
+.featured-post:hover, .post-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+.post-list-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.section-title {
+  font-size: 2rem;
+  color: $text-color;
+  margin-bottom: $spacing-lg;
+  padding-bottom: $spacing-sm;
+  display: inline-block;
+  font-weight: 600;
+  letter-spacing: -0.25px;
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: $primary-color;
+    border-radius: $border-radius-sm;
+    transition: width 0.3s ease;
+    opacity: 0.7;
+  }
+  &:hover:after {
+    width: 80px;
+  }
+}
+
+.section-divider {
+  height: 1px;
+  background-color: var(--divider-color);
+  margin: $spacing-lg 0;
+  opacity: 0.5;
+}
+
+.rss-subscribe {
+  margin-top: $spacing-lg;
+  text-align: right;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.search-section {
+  background-color: white;
+  position: relative;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, #0366d6, #5a32a3);
+    border-radius: 4px;
+  }
+}
+.search-form {
+  display: flex;
+  align-items: center;
+  position: relative;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  padding: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  &:focus-within {
+    box-shadow: 0 6px 20px rgba(3, 102, 214, 0.15);
+    transform: translateY(-2px);
+  }
+  .search-input {
+    flex: 1;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 10px 0 0 10px;
+    font-size: 1rem;
+    background: transparent;
+    color: #1a202c;
+    height: 50px;
+    &:focus {
+      outline: none;
+    }
+    &::placeholder {
+      color: #a0aec0;
+    }
+  }
+  .search-button {
+    background: linear-gradient(45deg, #0366d6, #5a32a3);
+    color: white;
+    border: none;
+    border-radius: 0 10px 10px 0;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 0;
+    &:hover {
+      background: linear-gradient(45deg, #0256b9, #4a2b87);
+      transform: translateY(-2px);
+    }
+    svg {
+      width: 20px;
+      height: 20px;
+      stroke-width: 2.5;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .search-form .search-input,
+  .search-form .search-button {
+    height: 45px;
+  }
+  .search-form .search-input {
+    font-size: 0.95rem;
+    padding: 12px 14px;
+  }
+  .search-form .search-button {
+    width: 45px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .post-list-container {
+    grid-template-columns: 1fr;
+  }
+  .hero-section {
+    padding: 25px 20px;
+    h1 {
+      font-size: 2.2rem;
+    }
+    .site-description {
+      font-size: 1rem;
+    }
+  }
+  .content-section {
+    padding: 25px 20px;
+  }
+  .featured-post {
+    padding: 20px;
+  }
+  .search-form .search-button {
+    width: 45px;
+    height: 45px;
+  }
+  .subscribe-form .form-group {
+    flex-direction: column;
+    .subscribe-button {
+      width: 100%;
+      padding: 12px 0;
+    }
+  }
+}

@@ -2,70 +2,90 @@
 layout: default
 ---
 
-<div class="main-content-card">
-  <!-- Hero Section -->
-  <div class="hero-section">
-    <h1>{{ site.title }}</h1>
-    <p class="site-description">{{ site.description }}</p>
+<div class="max-w-2xl mx-auto px-4 py-12 min-h-screen bg-white">
+  <div class="mb-10 text-center">
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">{{ site.title }}</h1>
+    <p class="mt-2 text-gray-600">{{ site.description }}</p>
   </div>
-  
-  <div class="section-divider"></div>
 
-    <!-- Search Section -->
-    <div class="content-section search-section">
-        <h2 class="section-title">Find Posts</h2>
-        <div class="search-container">
-          <form action="/search.html" method="get" class="search-form">
-            <input type="text" placeholder="What are you looking for?" name="q" class="search-input">
-            <button type="submit" class="search-button">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-            </button>
-          </form>
-        </div>
-      </div>
-  
- 
-  
-  <div class="section-divider"></div>
-  
- <!-- Featured Post Section -->
- <div class="content-section">
-    <h2 class="section-title">Featured Post</h2>
-    
-    {% assign featured_post = site.posts.first %}
-    <div class="featured-post">
-      <h3><a href="{{ featured_post.url | relative_url }}">{{ featured_post.title }}</a></h3>
-      <span class="post-date">{{ featured_post.date | date: "%B %d, %Y" }}</span>
-      <p>{{ featured_post.excerpt | strip_html | truncatewords: 50 }}</p>
-      <a href="{{ featured_post.url | relative_url }}" class="btn">Read More</a>
-    </div>
-  </div>
-  
-  <div class="section-divider"></div>
-  
-  <!-- Recent Posts Section -->
-  <div class="content-section">
-    <h2 class="section-title">Recent Posts</h2>
-    
-    <div class="post-list-container">
-      {% for post in site.posts limit:6 %}
-        <div class="post-item">
-          <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-          <span class="post-date">{{ post.date | date: "%B %d, %Y" }}</span>
-          <p>{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
-          
+  <hr class="border-gray-200 mb-10">
+
+  <section>
+    <h2 class="text-xl font-semibold text-gray-800 mb-6">Recent Posts</h2>
+        <form id="search-form" class="flex items-center mb-8 relative" autocomplete="off" role="search" aria-label="Search posts">
+      <span class="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </span>
+      <input type="text" id="search-input" placeholder="Search posts..." name="q" aria-label="Search posts" class="flex-1 pl-10 rounded-l-md border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-sm transition-shadow duration-200"/>
+      <button type="submit" class="rounded-r-md bg-gray-100 px-3 py-2 border-t border-b border-r border-gray-300 hover:bg-gray-200 focus:ring-2 focus:ring-blue-400 transition" tabindex="-1" aria-label="Submit search">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </button>
+    </form>
+    <div class="space-y-8" id="post-list" aria-live="polite">
+      {% for post in site.posts %}
+        <div class="border-b border-gray-100 pb-6 post-item" data-title="{{ post.title | escape }}" data-excerpt="{{ post.excerpt | strip_html | escape }}" data-categories="{% for category in post.categories %}{{ category | escape }} {% endfor %}">
+          <h3 class="text-lg font-semibold text-gray-900 mb-1">
+            <a href="{{ post.url | relative_url }}" class="hover:underline">{{ post.title }}</a>
+          </h3>
+          <span class="text-xs text-gray-400">{{ post.date | date: "%B %d, %Y" }}</span>
+          <p class="mt-2 text-gray-700">{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
           {% if post.categories.size > 0 %}
-          <div class="post-categories">
+          <div class="mt-2 flex flex-wrap gap-2">
             {% for category in post.categories %}
-              <span class="post-category">{{ category }}</span>
+              <span class="bg-gray-200 text-gray-600 text-xs px-2 py-1 rounded">{{ category }}</span>
             {% endfor %}
           </div>
           {% endif %}
         </div>
       {% endfor %}
     </div>
-  </div>
+    <div id="no-results" class="hidden text-center text-gray-400 py-8 transition-opacity duration-300" role="status" aria-live="polite">
+  <span class="inline-block text-2xl mb-2">😕</span><br/>
+  </section>
 </div>
+
+<script>
+  document.getElementById('search-form').addEventListener('submit', function(e) { e.preventDefault(); });
+  const searchInput = document.getElementById('search-input');
+  const postItems = Array.from(document.querySelectorAll('.post-item'));
+  const noResults = document.getElementById('no-results');
+
+  function highlightMatch(text, query) {
+    if (!query) return text;
+    const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+    return text.replace(regex, '<mark class="bg-yellow-200 px-1 rounded">$1</mark>');
+  }
+
+  function updateResults() {
+    const q = searchInput.value.trim().toLowerCase();
+    let visibleCount = 0;
+    postItems.forEach(function(item) {
+      const title = item.getAttribute('data-title');
+      const excerpt = item.getAttribute('data-excerpt');
+      const categories = item.getAttribute('data-categories');
+      const match = q === '' || title.toLowerCase().includes(q) || excerpt.toLowerCase().includes(q) || categories.toLowerCase().includes(q);
+      item.style.transition = 'opacity 0.25s';
+      if (match) {
+        item.style.display = '';
+        setTimeout(() => { item.style.opacity = 1; }, 10);
+        // Highlight
+        item.querySelector('h3 a').innerHTML = highlightMatch(title, q);
+        item.querySelector('p').innerHTML = highlightMatch(item.getAttribute('data-excerpt'), q);
+        const cats = item.getAttribute('data-categories').split(' ');
+        const catSpans = item.querySelectorAll('span.bg-gray-200');
+        cats.forEach((cat, idx) => {
+          if (catSpans[idx]) catSpans[idx].innerHTML = highlightMatch(cat, q);
+        });
+        visibleCount++;
+      } else {
+        item.style.opacity = 0;
+        setTimeout(() => { item.style.display = 'none'; }, 250);
+      }
+    });
+    noResults.classList.toggle('hidden', visibleCount !== 0);
+    noResults.style.opacity = visibleCount === 0 ? 1 : 0;
+  }
+  searchInput.addEventListener('input', updateResults);
+  // Run on page load in case of autofill
+  updateResults();
+</script>
