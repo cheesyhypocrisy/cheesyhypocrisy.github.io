@@ -10,6 +10,7 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-commonmark-ghpages
 
 # SEO and social sharing
 author: Harsh Mantri
@@ -17,7 +18,10 @@ social_links:
   github: https://github.com/cheesyhypocrisy
 
 # Build settings
-markdown: kramdown
+markdown: CommonMarkGhPages
+commonmark:
+  options: ["SMART", "FOOTNOTES", "STRIKETHROUGH_DOUBLE_TILDE", "TABLE_PREFER_STYLE_ATTRIBUTES"]
+  extensions: ["autolink", "table", "strikethrough", "tagfilter", "tasklist"]
 
 # Custom styling (optional)
 # Add these lines to your existing config if they're not already there

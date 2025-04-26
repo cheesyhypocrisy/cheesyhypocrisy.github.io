@@ -1,0 +1,41 @@
+/* Dark mode overrides for post content */
+.dark .post-content {
+  color: var(--text-color);
+  background: linear-gradient(120deg, rgba(35,41,55,0.97) 60%, rgba(30,34,48,0.96) 100%);
+  border: 1.5px solid var(--border-light);
+}
+.dark .post-content h1,
+.dark .post-content h2,
+.dark .post-content h3,
+.dark .post-content h4,
+.dark .post-content h5,
+.dark .post-content h6,
+.dark .post-content p,
+.dark .post-content li,
+.dark .post-content blockquote,
+.dark .post-content td,
+.dark .post-content th,
+.dark .post-content dt,
+.dark .post-content dd,
+.dark .post-content code,
+.dark .post-content pre,
+.dark .post-content a,
+.dark .post-content strong,
+.dark .post-content em,
+.dark .post-content span,
+.dark .post-content sup,
+.dark .post-content sub {
+  color: var(--text-color) !important;
+}
+.dark .post-content blockquote {
+  background: var(--blockquote-bg);
+}
+.dark .post-content table,
+.dark .post-content th,
+.dark .post-content td {
+  background: rgba(35,41,55,0.98) !important;
+  border-color: var(--border-light);
+}
+.dark .post-content tr:nth-child(even) td {
+  background: rgba(35,41,55,0.98) !important;
+}
