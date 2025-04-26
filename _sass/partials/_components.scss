@@ -115,19 +115,23 @@
   box-shadow: 0 4px 15px var(--shadow-color);
   padding: 0;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
   &:focus-within {
     box-shadow: 0 6px 20px var(--shadow-color);
     transform: translateY(-2px);
   }
   .search-input {
     flex: 1;
-    padding: 15px 20px;
+    padding: 11px 16px;
     border: none;
     border-radius: 10px 0 0 10px;
     font-size: 1rem;
     background: transparent;
     color: var(--text-color);
-    height: 50px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
     &:focus {
       outline: none;
     }
@@ -140,22 +144,25 @@
     color: white;
     border: none;
     border-radius: 0 10px 10px 0;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
     margin-left: 0;
+    padding: 0;
     &:hover {
       background: linear-gradient(45deg, var(--primary-color-dark), var(--secondary-color-dark));
       transform: translateY(-2px);
     }
     svg {
-      width: 20px;
-      height: 20px;
-      stroke-width: 2.5;
+      width: 18px;
+      height: 18px;
+      stroke-width: 2.2;
+      display: block;
+      margin: 0 auto;
     }
   }
 }
