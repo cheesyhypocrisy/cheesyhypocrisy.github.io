@@ -19,20 +19,29 @@
 }
 
 .featured-post, .post-item {
-  background: linear-gradient(135deg, #ffffff, #f8f9fa);
+  background: var(--card-background);
   border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+  box-shadow: 0 5px 15px var(--shadow-color);
   padding: 25px 30px;
   margin-bottom: 35px;
   position: relative;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
   border: none;
+  color: var(--text-color);
 }
+
+.dark .featured-post, .dark .post-item {
+  background: #283142;
+  color: var(--text-color);
+  border: 1px solid rgba(255,255,255,0.05);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+}
+
 
 .featured-post:hover, .post-item:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 25px var(--shadow-color);
 }
 
 .post-list-container {
@@ -44,13 +53,14 @@
 
 .section-title {
   font-size: 2rem;
-  color: $text-color;
+  color: var(--text-color);
   margin-bottom: $spacing-lg;
   padding-bottom: $spacing-sm;
   display: inline-block;
   font-weight: 600;
   letter-spacing: -0.25px;
   position: relative;
+  transition: color 0.3s ease;
   &:after {
     content: '';
     position: absolute;
@@ -58,9 +68,9 @@
     left: 0;
     width: 40px;
     height: 2px;
-    background: $primary-color;
+    background: var(--primary-color);
     border-radius: $border-radius-sm;
-    transition: width 0.3s ease;
+    transition: width 0.3s ease, background 0.3s ease;
     opacity: 0.7;
   }
   &:hover:after {
@@ -83,7 +93,7 @@
 }
 
 .search-section {
-  background-color: white;
+  background-color: var(--background-color);
   position: relative;
   &:before {
     content: '';
@@ -92,7 +102,7 @@
     left: 0;
     width: 4px;
     height: 100%;
-    background: linear-gradient(to bottom, #0366d6, #5a32a3);
+    background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
     border-radius: 4px;
   }
 }
@@ -100,13 +110,13 @@
   display: flex;
   align-items: center;
   position: relative;
-  background: white;
+  background: var(--background-color);
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 15px var(--shadow-color);
   padding: 0;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   &:focus-within {
-    box-shadow: 0 6px 20px rgba(3, 102, 214, 0.15);
+    box-shadow: 0 6px 20px var(--shadow-color);
     transform: translateY(-2px);
   }
   .search-input {
@@ -116,17 +126,17 @@
     border-radius: 10px 0 0 10px;
     font-size: 1rem;
     background: transparent;
-    color: #1a202c;
+    color: var(--text-color);
     height: 50px;
     &:focus {
       outline: none;
     }
     &::placeholder {
-      color: #a0aec0;
+      color: var(--text-muted);
     }
   }
   .search-button {
-    background: linear-gradient(45deg, #0366d6, #5a32a3);
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
     color: white;
     border: none;
     border-radius: 0 10px 10px 0;
@@ -139,7 +149,7 @@
     transition: all 0.3s ease;
     margin-left: 0;
     &:hover {
-      background: linear-gradient(45deg, #0256b9, #4a2b87);
+      background: linear-gradient(45deg, var(--primary-color-dark), var(--secondary-color-dark));
       transform: translateY(-2px);
     }
     svg {

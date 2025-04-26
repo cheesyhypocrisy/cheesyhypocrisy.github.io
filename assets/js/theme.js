@@ -6,6 +6,20 @@ const searchInput = document.getElementById('search-input');
 function setTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
   localStorage.setItem('theme', theme);
+  
+  // Update theme icons if they exist
+  const sunIcon = document.getElementById('theme-icon-sun');
+  const moonIcon = document.getElementById('theme-icon-moon');
+  
+  if (sunIcon && moonIcon) {
+    if (theme === 'dark') {
+      sunIcon.classList.remove('hidden');
+      moonIcon.classList.add('hidden');
+    } else {
+      sunIcon.classList.add('hidden');
+      moonIcon.classList.remove('hidden');
+    }
+  }
 }
 
 // Check for saved theme preference or system preference

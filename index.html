@@ -72,7 +72,10 @@ layout: default
 <style>
   .post-excerpt {
     margin-top: 10px;
-    color: #4a5568;
+    color: #4a5568; /* light */
+  }
+  .dark .post-excerpt {
+    color: #cbd5e1; /* gray-300 for dark mode */
     line-height: 1.5;
   }
   
@@ -85,7 +88,13 @@ layout: default
   
   .post-category {
     background-color: rgba(49, 130, 206, 0.1);
-    color: #3182ce;
+  }
+  .dark .post-category {
+    background-color: rgba(49, 130, 206, 0.18);
+    color: #3182ce; /* light */
+  }
+  .dark .post-category {
+    color: #93c5fd; /* blue-200 for dark mode */
     padding: 4px 10px;
     border-radius: 20px;
     font-size: 0.8rem;
