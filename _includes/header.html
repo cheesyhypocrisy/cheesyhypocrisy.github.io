@@ -1,12 +1,21 @@
 <nav class="w-full border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
   <div class="max-w-4xl mx-auto flex items-center justify-between px-4 py-3">
     <a href="{{ '/' | relative_url }}" class="text-lg font-semibold text-gray-900 dark:text-gray-100 tracking-tight">{{ site.title | escape }}</a>
+    <!-- Hamburger for mobile -->
     <div class="flex items-center gap-4">
-      {%- for path in site.pages -%}
-        {%- if path.title and path.exclude_from_nav != true -%}
-        <a href="{{ path.url | relative_url }}" class="text-gray-700 dark:text-gray-300 hover:underline px-2 py-1 rounded transition-colors {% if page.url == path.url %}font-bold underline{% endif %}">{{ path.title | escape }}</a>
-        {%- endif -%}
-      {%- endfor -%}
+      <button id="mobile-menu-toggle" class="md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" aria-label="Open menu">
+        <svg class="w-7 h-7 text-gray-700 dark:text-gray-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+      <!-- Desktop nav links -->
+      <div class="hidden md:flex items-center gap-4">
+        {%- for path in site.pages -%}
+          {%- if path.title and path.exclude_from_nav != true -%}
+          <a href="{{ path.url | relative_url }}" class="text-gray-700 dark:text-gray-300 hover:underline px-2 py-1 rounded transition-colors {% if page.url == path.url %}font-bold underline{% endif %}">{{ path.title | escape }}</a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
       <button id="theme-toggle" class="ml-2 p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors" aria-label="Toggle dark mode">
         <svg id="theme-icon-sun" class="w-6 h-6 text-yellow-400 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="5" />
@@ -17,6 +26,46 @@
         </svg>
       </button>
     </div>
+    <!-- Mobile nav menu -->
+    <div id="mobile-menu" class="md:hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-60 z-50 hidden">
+      <div class="absolute top-0 right-0 w-3/4 max-w-xs h-full bg-white dark:bg-gray-900 shadow-lg p-6 flex flex-col gap-4 animate-slide-in">
+        <button id="mobile-menu-close" class="self-end mb-6 p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800" aria-label="Close menu">
+          <svg class="w-7 h-7 text-gray-700 dark:text-gray-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        {%- for path in site.pages -%}
+          {%- if path.title and path.exclude_from_nav != true -%}
+          <a href="{{ path.url | relative_url }}" class="block text-lg text-gray-800 dark:text-gray-100 py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors {% if page.url == path.url %}font-bold underline{% endif %}">{{ path.title | escape }}</a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+    <style>
+      @keyframes slide-in {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+      }
+      .animate-slide-in { animation: slide-in 0.25s cubic-bezier(0.4,0,0.2,1); }
+    </style>
+    <script>
+      // Hamburger menu toggle
+      const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileMenuClose = document.getElementById('mobile-menu-close');
+      mobileMenuToggle.addEventListener('click', () => {
+        mobileMenu.classList.remove('hidden');
+      });
+      mobileMenuClose.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+      // Close menu on outside click
+      mobileMenu.addEventListener('click', (e) => {
+        if (e.target === mobileMenu) {
+          mobileMenu.classList.add('hidden');
+        }
+      });
+    </script>
   </div>
 </nav>
 
